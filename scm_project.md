@@ -1398,24 +1398,6 @@ flowchart TD
 
 ---
 
-## 9-10. Baseline vs Scenario Comparison Execution
-
-```mermaid
-flowchart LR
-    subgraph Run1["Run 1: Baseline"]
-        S1["scenario_id = null"] --> F1["Forecast\nBaseline demand"]
-    end
-    subgraph Run2["Run 2: LOE Scenario"]
-        S2["scenario_id = loe_q3\nwith assumption_json"] --> F2["Forecast\nLOE-adjusted demand"]
-    end
-    F1 --> UI
-    F2 --> UI["UI: Side-by-side comparison\nDiff highlighted"]
-```
-
-Both runs use the same `model_id` and the same `input_snapshot`, differing only in `scenario_id`. This isolates the scenario's effect for accurate comparison.
-
----
-
 ## 9-11. Champion / Challenger Operation
 
 **MVP operation (manual):**
@@ -2034,3 +2016,26 @@ Two things are needed in MVP:
 | **Full MLOps Platform** | Cannot sustain without dedicated operations staff | Model Registry + S3 as substitute |
 
 ---
+
+# References
+
+| Metric / Claim | Source | Year Verified |
+|---|---|---|
+| Lambda maximum execution time 15 minutes (900 sec) | [AWS Lambda FAQs](https://aws.amazon.com/lambda/faqs/) | 2025 |
+| Lambda maximum memory 10,240 MB | [AWS Lambda FAQs](https://aws.amazon.com/lambda/faqs/) | 2025 |
+| Lambda default concurrency limit 1,000 | [AWS Lambda FAQs](https://aws.amazon.com/lambda/faqs/) | 2025 |
+| API Gateway HTTP API integration timeout 29 sec (not extendable) | [AWS re:Post](https://repost.aws/knowledge-center/api-gateway-timeout-limit) | 2025 |
+| API Gateway Regional REST API timeout extendable (Jun 2024) | [AWS What's New](https://aws.amazon.com/about-aws/whats-new/2024/06/amazon-api-gateway-integration-timeout-limit-29-seconds/) | 2024.06 |
+| MWAA small environment $0.49/hr (2023 basis; micro tier added Nov 2024) | [AWS Blog 2023](https://aws.amazon.com/blogs/compute/automating-stopping-and-starting-amazon-mwaa-environments-to-reduce-cost/), [MWAA micro Nov 2024](https://aws.amazon.com/about-aws/whats-new/2024/11/amazon-mwaa-smaller-environment-size/) | 2023/2024 |
+| Aurora Serverless v2 maximum 256 ACUs (Oct 2024) | [AWS What's New](https://aws.amazon.com/about-aws/whats-new/2024/10/amazon-aurora-serverless-v2-256-acus) | 2024.10 |
+| Aurora Serverless v2 zero-scale support (Nov 2024) | [AWS What's New](https://aws.amazon.com/about-aws/whats-new/2024/11/amazon-aurora-serverless-v2-scaling-zero-capacity/) | 2024.11 |
+| Aurora Serverless v2 1 ACU ≈ 2 GiB RAM | [AWS Aurora Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html) | 2024 |
+| openpyxl does not evaluate formulas; xlwings incompatible with Linux | [openpyxl docs](https://openpyxl.readthedocs.io/en/stable/), [xlwings FAQ](https://www.xlwings.org/support) | 2024 |
+| ECS Fargate cold start 30–90 sec (ENI provisioning + image pull) | AWS official response | 2024 |
+| Step Functions Standard Workflow max 1 year; Express max 5 min | [AWS Step Functions Documentation](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-standard-vs-express.html) | 2024 |
+
+---
+
+*Document Version: v1.0*
+*Based on: SCM AI Planning Engineering Design Final (Internal Review) v2.0*
+*Last Updated: 2025*
