@@ -1381,24 +1381,7 @@ Value source types:
 
 ---
 
-## 9-9. Scenario Information Flow
-
-```mermaid
-flowchart TD
-    U["User\nSelects or creates Scenario"]
-    U -->|"Enter assumption_json"| SC["SCENARIO table\nstores assumption_json"]
-    SC --> FR["FORECAST_RUN\nincludes scenario_id"]
-    FR --> FC["Forecast Container\nparses assumption_json"]
-    FC --> A{"Scenario type\n+ model support"}
-    A -->|"Feature injection available"| FI["Add scenario feature\nto model input and run inference"]
-    A -->|"Post-processing"| PP["Run forecast without scenario\nthen adjust output based on assumption"]
-    FI -->
-    PP --> R["Store forecast_result\n(includes scenario_id)"]
-```
-
----
-
-## 9-11. Champion / Challenger Operation
+## 9-9. Champion / Challenger Operation
 
 **MVP operation (manual):**
 1. AI Scientist trains a new model and registers it as `challenger`
