@@ -223,8 +223,6 @@ flowchart TB
     API --> S3
     SF --> BATCH
     BATCH --> DB & S3
-    API -->
-    SF -->
     BATCH --> CW
 ```
 
